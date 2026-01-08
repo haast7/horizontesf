@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import HeroInvestidoresSection from '@/components/sections/investidores/HeroInvestidoresSection'
 import BeneficiosInvestimentoSection from '@/components/sections/investidores/BeneficiosInvestimentoSection'
 import NumerosInvestimentoSection from '@/components/sections/investidores/NumerosInvestimentoSection'
+import CronogramaSection from '@/components/sections/investidores/CronogramaSection'
 import FormularioInvestidoresSection from '@/components/sections/investidores/FormularioInvestidoresSection'
 import OutrosServicosInvestidoresSection from '@/components/sections/investidores/OutrosServicosInvestidoresSection'
 import GarantiasSection from '@/components/sections/investidores/GarantiasSection'
@@ -37,6 +38,7 @@ export default function InvestidoresUsinaSolarPage() {
       <HeroInvestidoresSection />
       <NumerosInvestimentoSection />
       <BeneficiosInvestimentoSection />
+      <CronogramaSection />
       <GarantiasSection />
       <FormularioInvestidoresSection />
       <OutrosServicosInvestidoresSection />
