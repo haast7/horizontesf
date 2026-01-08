@@ -11,11 +11,6 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  // Não renderizar o Header na página de investidores
-  if (pathname?.includes('/investidores-usina-solar')) {
-    return null
-  }
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
@@ -23,6 +18,11 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Não renderizar o Header na página de investidores
+  if (pathname?.includes('/investidores-usina-solar')) {
+    return null
+  }
 
   return (
     <header

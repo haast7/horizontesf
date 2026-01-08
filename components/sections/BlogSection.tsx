@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { FiArrowRight } from 'react-icons/fi'
 import { motion } from 'framer-motion'
 
@@ -48,10 +49,11 @@ export default function BlogSection() {
               className="card-product overflow-hidden group cursor-pointer"
             >
               <div className="relative h-64 overflow-hidden">
-                <img
+                <Image
                   src={post.image}
                   alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
               <div className="p-6">

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { motion } from 'framer-motion'
 
@@ -161,10 +162,11 @@ export default function ProductsSection() {
                   <div className="absolute top-4 left-4 z-10 bg-yellow-primary rounded-full w-12 h-12 flex items-center justify-center text-2xl">
                     {product.icon}
                   </div>
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 </div>
                 <div className="p-6">

@@ -160,7 +160,7 @@ export default function PrivacidadePage() {
                   </a>
                 </p>
                 <p className="mt-4 text-sm text-gray-600">
-                  Para questões específicas sobre proteção de dados, mencione "LGPD" ou "Proteção de Dados" no assunto do e-mail.
+                  Para questões específicas sobre proteção de dados, mencione &quot;LGPD&quot; ou &quot;Proteção de Dados&quot; no assunto do e-mail.
                 </p>
               </div>
             </section>

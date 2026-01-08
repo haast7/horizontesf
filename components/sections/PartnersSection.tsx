@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const partners = [
@@ -30,10 +31,12 @@ export default function PartnersSection() {
               transition={{ delay: index * 0.1 }}
               className="grayscale hover:grayscale-0 transition-all duration-300"
             >
-              <img
+              <Image
                 src={partner.logo}
                 alt={partner.name}
-                className="h-12 md:h-16 object-contain"
+                width={150}
+                height={80}
+                className="h-12 md:h-16 w-auto object-contain"
               />
             </motion.div>
           ))}
