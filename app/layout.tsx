@@ -8,6 +8,8 @@ import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import FacebookPixel from '@/components/analytics/FacebookPixel'
 import { ModalFormularioProvider } from '@/contexts/ModalFormularioContext'
 import ModalFormularioInvestidores from '@/components/ui/ModalFormularioInvestidores'
+import { ModalFormularioHomeProvider } from '@/contexts/ModalFormularioHomeContext'
+import ModalFormularioHome from '@/components/ui/ModalFormularioHome'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -60,11 +62,14 @@ export default function RootLayout({
           <FacebookPixel pixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID} />
         )}
         <ModalFormularioProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <WhatsAppFloat />
-          <ModalFormularioInvestidores />
+          <ModalFormularioHomeProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <WhatsAppFloat />
+            <ModalFormularioInvestidores />
+            <ModalFormularioHome />
+          </ModalFormularioHomeProvider>
         </ModalFormularioProvider>
       </body>
     </html>
