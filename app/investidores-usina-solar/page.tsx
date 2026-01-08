@@ -3,7 +3,6 @@ import HeroInvestidoresSection from '@/components/sections/investidores/HeroInve
 import NumerosInvestimentoSection from '@/components/sections/investidores/NumerosInvestimentoSection'
 import CronogramaSection from '@/components/sections/investidores/CronogramaSection'
 import FormularioInvestidoresSection from '@/components/sections/investidores/FormularioInvestidoresSection'
-import OutrosServicosInvestidoresSection from '@/components/sections/investidores/OutrosServicosInvestidoresSection'
 import GarantiasSection from '@/components/sections/investidores/GarantiasSection'
 
 export const metadata: Metadata = {
@@ -39,7 +38,6 @@ export default function InvestidoresUsinaSolarPage() {
       <CronogramaSection />
       <GarantiasSection />
       <FormularioInvestidoresSection />
-      <OutrosServicosInvestidoresSection />
     </>
   )
 }
