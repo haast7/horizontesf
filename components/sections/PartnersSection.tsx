@@ -4,12 +4,12 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const partners = [
-  { name: 'Neon', logo: 'https://via.placeholder.com/150x80?text=NEON' },
-  { name: 'Safra', logo: 'https://via.placeholder.com/150x80?text=SAFRA' },
-  { name: 'Ulend', logo: 'https://via.placeholder.com/150x80?text=ULEND' },
-  { name: 'WMO', logo: 'https://via.placeholder.com/150x80?text=WMO' },
-  { name: 'BMG', logo: 'https://via.placeholder.com/150x80?text=BMG' },
-  { name: 'Itaú', logo: 'https://via.placeholder.com/150x80?text=ITAU' },
+  { name: 'Neon', logo: '/Horizontes-Soluções-Financeiras-01-07-2026_12_39_PM.png' },
+  { name: 'Safra', logo: '/Grupo_Safra_logo.svg.png' },
+  { name: 'Ulend', logo: '/Logo_Oficial_Ulend-SEM-FUNDO.png' },
+  { name: 'WMO', logo: '/logo-wmo.png' },
+  { name: 'BMG', logo: '/Logo_do_Banco_Bmg.svg.png' },
+  { name: 'Itaú', logo: '/2023_Itaú_Unibanco_Logo.png' },
 ]
 
 export default function PartnersSection() {
@@ -20,7 +20,7 @@ export default function PartnersSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60"
+          className="flex flex-nowrap justify-center items-center gap-6 md:gap-8 lg:gap-12 overflow-x-auto"
         >
           {partners.map((partner, index) => (
             <motion.div
@@ -29,14 +29,14 @@ export default function PartnersSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="grayscale hover:grayscale-0 transition-all duration-300"
+              className="flex items-center justify-center flex-shrink-0 transition-transform duration-300 hover:scale-105"
             >
               <Image
                 src={partner.logo}
                 alt={partner.name}
-                width={150}
-                height={80}
-                className="h-12 md:h-16 w-auto object-contain"
+                width={120}
+                height={60}
+                className="h-10 md:h-12 w-auto object-contain"
               />
             </motion.div>
           ))}

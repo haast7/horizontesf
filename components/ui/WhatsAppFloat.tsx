@@ -1,4 +1,4 @@
-import { FiMessageCircle } from 'react-icons/fi'
+import { FaWhatsapp } from 'react-icons/fa'
 
 export default function WhatsAppFloat() {
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5511941556497'
@@ -12,7 +12,7 @@ export default function WhatsAppFloat() {
       className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 z-50 flex items-center justify-center"
       aria-label="Fale conosco no WhatsApp"
     >
-      <FiMessageCircle size={28} />
+      <FaWhatsapp size={28} />
     </a>
   )
 }

@@ -3,7 +3,8 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { FiInstagram, FiFacebook, FiLinkedin, FiArrowRight } from 'react-icons/fi'
+import { FiInstagram, FiFacebook, FiArrowRight } from 'react-icons/fi'
+import { FaWhatsapp } from 'react-icons/fa'
 
 export default function Footer() {
   const pathname = usePathname()
@@ -101,11 +102,6 @@ export default function Footer() {
                   Quem Somos
                 </Link>
               </li>
-              <li>
-                <Link href="#time" className="text-gray-300 hover:text-yellow-primary transition-colors">
-                  Nosso Time
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -176,7 +172,7 @@ export default function Footer() {
             <h3 className="font-semibold mb-4">Redes Sociais</h3>
             <div className="flex space-x-4">
               <a
-                href="https://instagram.com/smartcred"
+                href="https://www.instagram.com/smartcred.santoandre.tibirica/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-yellow-primary transition-colors"
@@ -185,7 +181,7 @@ export default function Footer() {
                 <FiInstagram size={24} />
               </a>
               <a
-                href="https://facebook.com/smartcred"
+                href="https://www.facebook.com/smartcred.santoandre.vilatibirica"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-yellow-primary transition-colors"
@@ -194,13 +190,13 @@ export default function Footer() {
                 <FiFacebook size={24} />
               </a>
               <a
-                href="https://linkedin.com/company/smartcred"
+                href="https://wa.me/5511941556497?text=Olá! Gostaria de saber mais sobre os produtos SmartCred."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-yellow-primary transition-colors"
-                aria-label="LinkedIn"
+                className="text-gray-300 hover:text-green-500 transition-colors"
+                aria-label="WhatsApp"
               >
-                <FiLinkedin size={24} />
+                <FaWhatsapp size={24} />
               </a>
             </div>
           </div>

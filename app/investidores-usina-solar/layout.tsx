@@ -4,6 +4,7 @@ import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import FacebookPixel from '@/components/analytics/FacebookPixel'
 import { ModalFormularioProvider } from '@/contexts/ModalFormularioContext'
 import ModalFormularioInvestidores from '@/components/ui/ModalFormularioInvestidores'
+import FooterInvestidores from '@/components/layout/FooterInvestidores'
 
 export default function InvestidoresLayout({
   children,
@@ -20,6 +21,7 @@ export default function InvestidoresLayout({
       )}
       <ModalFormularioProvider>
         <main>{children}</main>
+        <FooterInvestidores />
         <WhatsAppFloat />
         <ModalFormularioInvestidores />
       </ModalFormularioProvider>

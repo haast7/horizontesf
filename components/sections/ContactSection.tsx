@@ -9,7 +9,6 @@ export default function ContactSection() {
     name: '',
     email: '',
     whatsapp: '',
-    document: '',
     product: 'Consignado',
   })
 
@@ -22,7 +21,6 @@ export default function ContactSection() {
       name: '',
       email: '',
       whatsapp: '',
-      document: '',
       product: 'Consignado',
     })
   }
@@ -113,21 +111,6 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="document" className="block text-sm font-medium text-gray-700 mb-2">
-                  CPF ou CNPJ
-                </label>
-                <input
-                  type="text"
-                  id="document"
-                  name="document"
-                  value={formData.document}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-yellow-primary focus:border-transparent"
-                />
-              </div>
-
-              <div>
                 <label htmlFor="product" className="block text-sm font-medium text-gray-700 mb-2">
                   Produto
                 </label>
@@ -166,23 +149,25 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <div className="bg-yellow-primary rounded-card p-8 text-center">
+            <a
+              href="https://wa.me/5511941556497?text=Olá! Gostaria de saber mais sobre os produtos SmartCred."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-yellow-primary rounded-card p-8 text-center block hover:bg-green-500 transition-all duration-300 cursor-pointer"
+            >
               <div className="bg-petroleum-dark rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <FiPhone size={28} className="text-yellow-primary" />
               </div>
               <h3 className="text-xl font-semibold text-petroleum-dark mb-2">
                 Fale conosco via telefone
               </h3>
-              <a
-                href="tel:+5511941556497"
-                className="text-2xl font-bold text-petroleum-dark hover:text-petroleum-light transition-colors"
-              >
+              <div className="text-2xl font-bold text-petroleum-dark hover:text-petroleum-light transition-colors">
                 (11) 94155-6497
-              </a>
+              </div>
               <p className="text-sm text-petroleum-dark mt-2">
                 WhatsApp disponível
               </p>
-            </div>
+            </a>
 
             <div className="card-product p-6">
               <h3 className="heading-3 mb-4">Horário de Atendimento</h3>

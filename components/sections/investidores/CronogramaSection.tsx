@@ -8,7 +8,9 @@ const fases = [
     numero: 1,
     titulo: 'Estudo de Viabilidade',
     descricoes: [
-      'Estudo de viabilidade',
+      'Análise técnica completa do local e condições climáticas',
+      'Avaliação de viabilidade financeira e projeção de retorno',
+      'Estudo de conexão com a rede elétrica e documentação necessária',
     ],
     duracao: '30 Dias',
     cor: 'bg-green-500',
@@ -28,7 +30,9 @@ const fases = [
     numero: 3,
     titulo: 'Instalação',
     descricoes: [
-      'Instalação',
+      'Montagem dos painéis solares e estrutura de suporte',
+      'Instalação do inversor e sistema de monitoramento',
+      'Conexão elétrica e testes de funcionamento',
     ],
     duracao: '15 Dias',
     cor: 'bg-yellow-primary',
@@ -47,7 +51,9 @@ const fases = [
     numero: 5,
     titulo: 'Início dos Recebimentos',
     descricoes: [
-      'Início dos recebimentos',
+      'Geração de energia em pleno funcionamento',
+      'Recebimento mensal dos créditos de energia',
+      'Retorno do investimento iniciado com previsibilidade',
     ],
     duracao: '6 Meses',
     cor: 'bg-petroleum-dark',
@@ -78,7 +84,7 @@ export default function CronogramaSection() {
             {/* Linha conectora */}
             <div className="absolute top-1/2 left-0 right-0 h-1 bg-white/20 transform -translate-y-1/2 z-0"></div>
             
-            <div className="relative flex justify-between items-start">
+            <div className="relative flex justify-between items-stretch gap-4">
               {fases.map((fase, index) => (
                 <motion.div
                   key={fase.numero}
@@ -89,12 +95,12 @@ export default function CronogramaSection() {
                   className="flex-1 flex flex-col items-center relative z-10"
                 >
                   {/* Card */}
-                  <div className="bg-white rounded-card p-6 w-full max-w-xs shadow-card-hover hover:shadow-2xl transition-all duration-300 mb-4">
+                  <div className="bg-white rounded-card p-6 w-full max-w-xs shadow-card-hover hover:shadow-2xl transition-all duration-300 mb-4 h-full flex flex-col relative">
                     {/* Barra colorida inferior */}
                     <div className={`${fase.cor} h-2 rounded-b-card absolute bottom-0 left-0 right-0`}></div>
                     
                     {/* Conteúdo */}
-                    <div className="mb-4">
+                    <div className="mb-4 flex-1 flex flex-col">
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-2xl font-bold text-petroleum-dark">
                           {fase.numero}
@@ -106,7 +112,7 @@ export default function CronogramaSection() {
                       <h3 className="heading-3 text-lg mb-3 text-petroleum-dark">
                         {fase.titulo}
                       </h3>
-                      <ul className="space-y-2 mb-4">
+                      <ul className="space-y-2 mb-4 flex-1">
                         {fase.descricoes.map((desc, idx) => (
                           <li key={idx} className="text-body text-sm flex items-start">
                             <span className="text-petroleum-dark mr-2">•</span>
@@ -117,7 +123,7 @@ export default function CronogramaSection() {
                     </div>
                     
                     {/* Duração */}
-                    <div className={`${fase.cor} text-white px-4 py-2 rounded-button flex items-center justify-center space-x-2`}>
+                    <div className={`${fase.cor} text-white px-4 py-2 rounded-button flex items-center justify-center space-x-2 mt-auto`}>
                       <FiClock size={16} />
                       <span className="font-semibold text-sm">{fase.duracao}</span>
                     </div>

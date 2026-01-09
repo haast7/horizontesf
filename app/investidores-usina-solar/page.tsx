@@ -3,7 +3,9 @@ import HeroInvestidoresSection from '@/components/sections/investidores/HeroInve
 import NumerosInvestimentoSection from '@/components/sections/investidores/NumerosInvestimentoSection'
 import CronogramaSection from '@/components/sections/investidores/CronogramaSection'
 import FormularioInvestidoresSection from '@/components/sections/investidores/FormularioInvestidoresSection'
+import OutrosServicosInvestidoresSection from '@/components/sections/investidores/OutrosServicosInvestidoresSection'
 import GarantiasSection from '@/components/sections/investidores/GarantiasSection'
+import GaleriaSection from '@/components/sections/investidores/GaleriaSection'
 
 export const metadata: Metadata = {
   title: 'Investimento em Usina Solar | SmartCred - Retorno Garantido para Investidores',
@@ -35,9 +37,11 @@ export default function InvestidoresUsinaSolarPage() {
     <>
       <HeroInvestidoresSection />
       <NumerosInvestimentoSection />
-      <CronogramaSection />
       <GarantiasSection />
       <FormularioInvestidoresSection />
+      <CronogramaSection />
+      <GaleriaSection />
+      <OutrosServicosInvestidoresSection />
     </>
   )
 }
