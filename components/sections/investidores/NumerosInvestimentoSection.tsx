@@ -46,7 +46,7 @@ export default function NumerosInvestimentoSection() {
         >
           <h2 className="heading-2 mb-4">
             Por Que Investidores Escolhem{' '}
-            <span className="text-yellow-primary">Usina Solar</span>
+            <span className="text-yellow-primary drop-shadow-lg">Usina Solar</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto">
             Números que comprovam a excelência do investimento em energia solar
@@ -66,7 +66,7 @@ export default function NumerosInvestimentoSection() {
                 transition={{ delay: index * 0.1 }}
                 className="card-product p-8 text-center hover:scale-105 transition-transform"
               >
-                <div className={`${numero.cor} mb-4 flex justify-center`}>
+                <div className={`${numero.cor} mb-4 flex justify-center ${numero.cor === 'text-yellow-primary' ? 'drop-shadow-lg' : ''}`}>
                   <Icon size={48} />
                 </div>
                 <div className="text-5xl font-bold text-petroleum-dark mb-2">

@@ -11,8 +11,8 @@ const config: Config = {
       colors: {
         'petroleum-dark': '#0d1751',
         'petroleum-light': '#1a2a6b',
-        'yellow-primary': '#FFD700',
-        'yellow-light': '#FFE44D',
+        'yellow-primary': '#F4A900', // Dourado mais escuro e visível
+        'yellow-light': '#FFB800',
         'gray-light': '#F5F5F5',
         'gray-medium': '#E0E0E0',
       },
