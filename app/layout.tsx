@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer'
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import FacebookPixel from '@/components/analytics/FacebookPixel'
+import RDStation from '@/components/analytics/RDStation'
 import { ModalFormularioProvider } from '@/contexts/ModalFormularioContext'
 import ModalFormularioInvestidores from '@/components/ui/ModalFormularioInvestidores'
 import { ModalFormularioHomeProvider } from '@/contexts/ModalFormularioHomeContext'
@@ -61,6 +62,7 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_FB_PIXEL_ID && (
           <FacebookPixel pixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID} />
         )}
+        <RDStation />
         <ModalFormularioProvider>
           <ModalFormularioHomeProvider>
             <Header />
