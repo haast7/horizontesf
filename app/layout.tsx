@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     width: 'device-width',
     initialScale: 1,
   },
+  other: {
+    'facebook-domain-verification': '9hnsl740sgj5lckv84ugbzcnbe3x9h',
+  },
 }
 
 export default function RootLayout({
