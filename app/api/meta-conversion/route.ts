@@ -1,6 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 /**
+ * Hash SHA256 de uma string (requerido pelo Meta para privacidade)
+ */
+async function hashData(data: string): Promise<string> {
+  const encoder = new TextEncoder()
+  const dataBuffer = encoder.encode(data.toLowerCase().trim())
+  const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer)
+  const hashArray = Array.from(new Uint8Array(hashBuffer))
+  return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+}
+
+/**
  * API Route para enviar eventos de conversão para o Meta Conversions API
  * Esta rota deve ser chamada do cliente, mas executa no servidor para proteger o access token
  */
@@ -20,15 +31,6 @@ export async function POST(request: NextRequest) {
     const pixelId = process.env.META_PIXEL_ID || '837135372649493'
     const accessToken = process.env.META_ACCESS_TOKEN || 
       'EAAMPYSECsCgBQTFqPIP7oZBk0uxA2lA76GTxWYHSqHSZC3M63TlxtmrZBRMjNVGUli6JtJzMAmdgI3KhwGDTa77UPKAZAF3ZCOUM2ui6q0QDIIJoF7x0VMydOrYp8Y7kVZAFaD239TZCJPXyZBE5Q6icej5PlKuVs0GBvLsZAOb6bOi2GJ8SIIfEuUQlazozq6I52rgZDZD'
-
-    // Hash SHA256 de uma string (requerido pelo Meta para privacidade)
-    async function hashData(data: string): Promise<string> {
-      const encoder = new TextEncoder()
-      const dataBuffer = encoder.encode(data.toLowerCase().trim())
-      const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer)
-      const hashArray = Array.from(new Uint8Array(hashBuffer))
-      return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
-    }
 
     // Preparar dados do evento
     const eventData: any = {
