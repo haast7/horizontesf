@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FiArrowRight, FiPhone, FiMail, FiUser } from 'react-icons/fi'
+import { trackMetaLead } from '@/lib/services/metaConversions'
 
 export default function FormularioInvestidoresSection() {
   const [formData, setFormData] = useState({
@@ -20,8 +21,22 @@ export default function FormularioInvestidoresSection() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulação de envio - aqui você integraria com sua API
-    setTimeout(() => {
+    try {
+      // Separar nome completo em primeiro e último nome
+      const nameParts = formData.nomeCompleto.trim().split(' ')
+      const firstName = nameParts[0] || ''
+      const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : ''
+
+      // Enviar conversão para Meta
+      await trackMetaLead({
+        email: formData.email,
+        phone: formData.telefone,
+        firstName,
+        lastName,
+        product: `Investidores - Patrimônio: ${formData.patrimonio}, Saldo: ${formData.saldoInvestimento}`,
+        source: 'investidores_page',
+      })
+
       console.log('Form submitted:', formData)
       setIsSubmitting(false)
       setSubmitted(true)
@@ -37,7 +52,22 @@ export default function FormularioInvestidoresSection() {
         })
         setSubmitted(false)
       }, 3000)
-    }, 1000)
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setIsSubmitting(false)
+      // Ainda mostra sucesso mesmo se o tracking falhar
+      setSubmitted(true)
+      setTimeout(() => {
+        setFormData({
+          nomeCompleto: '',
+          email: '',
+          telefone: '',
+          patrimonio: '',
+          saldoInvestimento: '',
+        })
+        setSubmitted(false)
+      }, 3000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {

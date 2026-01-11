@@ -17,9 +17,7 @@ export default function InvestidoresLayout({
       {process.env.NEXT_PUBLIC_GA_ID && (
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       )}
-      {process.env.NEXT_PUBLIC_FB_PIXEL_ID && (
-        <FacebookPixel pixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID} />
-      )}
+      <FacebookPixel pixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID || '837135372649493'} />
       <RDStation />
       <ModalFormularioProvider>
         <main>{children}</main>

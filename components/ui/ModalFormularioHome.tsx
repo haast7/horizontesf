@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiX, FiArrowRight, FiPhone, FiMail, FiUser } from 'react-icons/fi'
 import { useModalFormularioHome } from '@/contexts/ModalFormularioHomeContext'
+import { trackMetaLead } from '@/lib/services/metaConversions'
 
 export default function ModalFormularioHome() {
   const { isOpen, closeModal } = useModalFormularioHome()
@@ -36,8 +37,22 @@ export default function ModalFormularioHome() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulação de envio - aqui você integraria com sua API
-    setTimeout(() => {
+    try {
+      // Separar nome completo em primeiro e último nome
+      const nameParts = formData.nomeCompleto.trim().split(' ')
+      const firstName = nameParts[0] || ''
+      const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : ''
+
+      // Enviar conversão para Meta
+      await trackMetaLead({
+        email: formData.email,
+        phone: formData.telefone,
+        firstName,
+        lastName,
+        product: formData.produto,
+        source: 'home_modal',
+      })
+
       console.log('Form submitted:', formData)
       setIsSubmitting(false)
       setSubmitted(true)
@@ -47,7 +62,16 @@ export default function ModalFormularioHome() {
         setSubmitted(false)
         closeModal()
       }, 3000)
-    }, 1000)
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setIsSubmitting(false)
+      // Ainda mostra sucesso mesmo se o tracking falhar
+      setSubmitted(true)
+      setTimeout(() => {
+        setSubmitted(false)
+        closeModal()
+      }, 3000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
