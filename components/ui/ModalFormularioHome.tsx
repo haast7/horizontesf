@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { FiX, FiArrowRight, FiPhone, FiMail, FiUser } from 'react-icons/fi'
 import { useModalFormularioHome } from '@/contexts/ModalFormularioHomeContext'
 import { trackMetaLead } from '@/lib/services/metaConversions'
+import { trackRDStationLead } from '@/lib/services/rdStation'
 
 export default function ModalFormularioHome() {
   const { isOpen, closeModal } = useModalFormularioHome()
@@ -49,6 +50,15 @@ export default function ModalFormularioHome() {
         phone: formData.telefone,
         firstName,
         lastName,
+        product: formData.produto,
+        source: 'home_modal',
+      })
+
+      // Enviar lead para RD Station
+      await trackRDStationLead({
+        email: formData.email,
+        name: formData.nomeCompleto,
+        phone: formData.telefone,
         product: formData.produto,
         source: 'home_modal',
       })

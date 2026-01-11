@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { FiX, FiArrowRight, FiPhone, FiMail, FiUser } from 'react-icons/fi'
 import { useModalFormulario } from '@/contexts/ModalFormularioContext'
 import { trackMetaLead } from '@/lib/services/metaConversions'
+import { trackRDStationLead } from '@/lib/services/rdStation'
 
 export default function ModalFormularioInvestidores() {
   const { isOpen, closeModal } = useModalFormulario()
@@ -51,6 +52,15 @@ export default function ModalFormularioInvestidores() {
         phone: formData.telefone,
         firstName,
         lastName,
+        product: `Investidores - Patrimônio: ${formData.patrimonio}, Saldo: ${formData.saldoInvestimento}`,
+        source: 'investidores_modal',
+      })
+
+      // Enviar lead para RD Station
+      await trackRDStationLead({
+        email: formData.email,
+        name: formData.nomeCompleto,
+        phone: formData.telefone,
         product: `Investidores - Patrimônio: ${formData.patrimonio}, Saldo: ${formData.saldoInvestimento}`,
         source: 'investidores_modal',
       })

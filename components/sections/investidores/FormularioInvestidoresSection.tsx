@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FiArrowRight, FiPhone, FiMail, FiUser } from 'react-icons/fi'
 import { trackMetaLead } from '@/lib/services/metaConversions'
+import { trackRDStationLead } from '@/lib/services/rdStation'
 
 export default function FormularioInvestidoresSection() {
   const [formData, setFormData] = useState({
@@ -33,6 +34,15 @@ export default function FormularioInvestidoresSection() {
         phone: formData.telefone,
         firstName,
         lastName,
+        product: `Investidores - Patrimônio: ${formData.patrimonio}, Saldo: ${formData.saldoInvestimento}`,
+        source: 'investidores_page',
+      })
+
+      // Enviar lead para RD Station
+      await trackRDStationLead({
+        email: formData.email,
+        name: formData.nomeCompleto,
+        phone: formData.telefone,
         product: `Investidores - Patrimônio: ${formData.patrimonio}, Saldo: ${formData.saldoInvestimento}`,
         source: 'investidores_page',
       })
