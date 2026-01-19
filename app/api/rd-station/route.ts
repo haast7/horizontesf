@@ -32,6 +32,13 @@ export async function POST(request: NextRequest) {
     
     // Usar token público para conversões (padrão)
     const token = publicToken
+    
+    // Log para debug (apenas em desenvolvimento)
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔑 Token usado:', token.substring(0, 10) + '...')
+      console.log('📧 Email do lead:', leadData.email)
+      console.log('🏷️ Identificador:', conversionIdentifier)
+    }
 
     // Identificador da conversão (nome do formulário/origem)
     const conversionIdentifier = leadData.source || 'formulario-site'
@@ -82,11 +89,14 @@ export async function POST(request: NextRequest) {
 
       if (modernResponse.ok) {
         const result = await modernResponse.json().catch(() => ({ success: true }))
-        console.log('Lead enviado para RD Station (API Moderna):', result)
+        console.log('✅ Lead enviado para RD Station (API Moderna):', result)
         return NextResponse.json({ success: true, method: 'modern', result })
+      } else {
+        const errorText = await modernResponse.text().catch(() => 'Unknown error')
+        console.warn('⚠️ API moderna retornou erro:', modernResponse.status, errorText)
       }
     } catch (modernError) {
-      console.log('API moderna falhou, tentando API legada...', modernError)
+      console.log('⚠️ API moderna falhou, tentando API legada...', modernError)
     }
 
     // Se a API moderna falhar, tentar API legada (form-urlencoded)
@@ -123,15 +133,25 @@ export async function POST(request: NextRequest) {
 
     if (!legacyResponse.ok) {
       const errorText = await legacyResponse.text().catch(() => 'Unknown error')
-      console.error('RD Station API Error (Legada):', errorText)
+      console.error('❌ RD Station API Error (Legada):', {
+        status: legacyResponse.status,
+        statusText: legacyResponse.statusText,
+        error: errorText,
+        tokenUsed: token.substring(0, 10) + '...'
+      })
       return NextResponse.json(
-        { error: 'Failed to send lead to RD Station', details: errorText },
+        { 
+          error: 'Failed to send lead to RD Station', 
+          details: errorText,
+          status: legacyResponse.status,
+          method: 'legacy'
+        },
         { status: legacyResponse.status }
       )
     }
 
     const legacyResult = await legacyResponse.json().catch(() => ({ success: true }))
-    console.log('Lead enviado para RD Station (API Legada):', legacyResult)
+    console.log('✅ Lead enviado para RD Station (API Legada):', legacyResult)
     return NextResponse.json({ success: true, method: 'legacy', result: legacyResult })
   } catch (error) {
     console.error('Error in RD Station API route:', error)
