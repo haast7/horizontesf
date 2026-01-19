@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { FiPhone, FiArrowRight } from 'react-icons/fi'
 import { motion } from 'framer-motion'
+import { trackRDStationLead } from '@/lib/services/rdStation'
+import { trackMetaLead } from '@/lib/services/metaConversions'
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -12,17 +14,67 @@ export default function ContactSection() {
     product: 'Consignado',
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Aqui você pode integrar com sua API ou serviço de formulário
-    console.log('Form submitted:', formData)
-    alert('Formulário enviado! Entraremos em contato em breve.')
-    setFormData({
-      name: '',
-      email: '',
-      whatsapp: '',
-      product: 'Consignado',
-    })
+    setIsSubmitting(true)
+
+    try {
+      // Separar nome completo em primeiro e último nome para Meta
+      const nameParts = formData.name.trim().split(' ')
+      const firstName = nameParts[0] || ''
+      const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : ''
+
+      // Enviar conversão para Meta
+      await trackMetaLead({
+        email: formData.email,
+        phone: formData.whatsapp,
+        firstName,
+        lastName,
+        product: formData.product,
+        source: 'contact_section',
+      })
+
+      // Enviar lead para RD Station
+      await trackRDStationLead({
+        email: formData.email,
+        name: formData.name,
+        phone: formData.whatsapp,
+        product: formData.product,
+        source: 'contact_section',
+      })
+
+      console.log('Form submitted:', formData)
+      setIsSubmitting(false)
+      setSubmitted(true)
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          whatsapp: '',
+          product: 'Consignado',
+        })
+        setSubmitted(false)
+      }, 3000)
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setIsSubmitting(false)
+      // Ainda mostra sucesso mesmo se o tracking falhar
+      setSubmitted(true)
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          whatsapp: '',
+          product: 'Consignado',
+        })
+        setSubmitted(false)
+      }, 3000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -63,7 +115,12 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="card-product p-8"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form 
+              name="formulario-contato" 
+              id="formulario-contato"
+              onSubmit={handleSubmit} 
+              className="space-y-6"
+            >
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                   Nome e Sobrenome
@@ -135,9 +192,21 @@ export default function ContactSection() {
                 </select>
               </div>
 
-              <button type="submit" className="btn-primary w-full inline-flex items-center justify-center space-x-2">
-                <span>Enviar</span>
-                <FiArrowRight />
+              <button 
+                type="submit" 
+                disabled={isSubmitting || submitted}
+                className="btn-primary w-full inline-flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {submitted ? (
+                  <span>Enviado com sucesso! ✓</span>
+                ) : isSubmitting ? (
+                  <span>Enviando...</span>
+                ) : (
+                  <>
+                    <span>Enviar</span>
+                    <FiArrowRight />
+                  </>
+                )}
               </button>
             </form>
           </motion.div>

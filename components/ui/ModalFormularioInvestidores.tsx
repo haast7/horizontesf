@@ -152,7 +152,12 @@ export default function ModalFormularioInvestidores() {
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form 
+                    name="modal-formulario-investidores" 
+                    id="modal-formulario-investidores"
+                    onSubmit={handleSubmit} 
+                    className="space-y-6"
+                  >
                     {/* Nome Completo */}
                     <div>
                       <label htmlFor="modal-nome-completo" className="block text-sm font-semibold text-gray-700 mb-2">

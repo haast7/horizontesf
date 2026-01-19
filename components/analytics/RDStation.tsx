@@ -2,6 +2,16 @@
 
 import Script from 'next/script'
 
+/**
+ * Componente para carregar o código de monitoramento do RD Station
+ * 
+ * Requisitos do RD Station para captura automática de formulários:
+ * - O código deve estar antes do fechamento da tag </body>
+ * - O formulário precisa ter campo de email (type="email" ou name="email")
+ * - O botão precisa ter type="submit"
+ * - O formulário deve estar dentro de tags <form></form>
+ * - O formulário NÃO pode estar dentro de iframes
+ */
 export default function RDStation() {
   return (
     <Script

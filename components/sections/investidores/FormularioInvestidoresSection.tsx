@@ -126,7 +126,12 @@ export default function FormularioInvestidoresSection() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form 
+                name="formulario-investidores" 
+                id="formulario-investidores"
+                onSubmit={handleSubmit} 
+                className="space-y-6"
+              >
                 {/* Nome e Sobrenome */}
                 <div>
                   <label htmlFor="nome-completo" className="block text-sm font-semibold text-gray-700 mb-2">

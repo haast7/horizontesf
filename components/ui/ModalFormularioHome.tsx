@@ -149,7 +149,12 @@ export default function ModalFormularioHome() {
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form 
+                    name="modal-formulario-home" 
+                    id="modal-formulario-home"
+                    onSubmit={handleSubmit} 
+                    className="space-y-6"
+                  >
                     {/* Nome Completo */}
                     <div>
                       <label htmlFor="modal-home-nome-completo" className="block text-sm font-semibold text-gray-700 mb-2">
