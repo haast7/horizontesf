@@ -33,15 +33,15 @@ export async function POST(request: NextRequest) {
     // Usar token público para conversões (padrão)
     const token = publicToken
     
+    // Identificador da conversão (nome do formulário/origem)
+    const conversionIdentifier = leadData.source || 'formulario-site'
+    
     // Log para debug (apenas em desenvolvimento)
     if (process.env.NODE_ENV === 'development') {
       console.log('🔑 Token usado:', token.substring(0, 10) + '...')
       console.log('📧 Email do lead:', leadData.email)
       console.log('🏷️ Identificador:', conversionIdentifier)
     }
-
-    // Identificador da conversão (nome do formulário/origem)
-    const conversionIdentifier = leadData.source || 'formulario-site'
 
     // Tentar primeiro com a API moderna (RD Station Marketing v2)
     try {
