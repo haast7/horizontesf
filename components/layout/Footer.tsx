@@ -42,8 +42,8 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center">
               <Image
-                src="/logo-smart-gold.png"
-                alt="SmartCred - Crédito Inteligente"
+                src="/4.png"
+                alt="Horizont Soluções Financeiras"
                 width={180}
                 height={60}
                 className="h-10 md:h-12 w-auto object-contain"
