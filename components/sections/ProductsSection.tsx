@@ -172,7 +172,7 @@ export default function ProductsSection() {
                 <div className="p-6">
                   <h3 className="heading-3 mb-4">{product.name}</h3>
                   <Link
-                    href={`#${product.id}`}
+                    href={`/${product.id}`}
                     className="text-petroleum-dark font-semibold hover:text-petroleum-light transition-colors inline-flex items-center space-x-2"
                   >
                     <span>Saiba mais</span>
